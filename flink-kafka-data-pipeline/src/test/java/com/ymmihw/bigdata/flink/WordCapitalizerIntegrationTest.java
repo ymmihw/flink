@@ -12,23 +12,21 @@ import java.util.stream.Collectors;
 
 public class WordCapitalizerIntegrationTest {
 
-    @Test
-    public void givenDataSet_whenExecuteWordCapitalizer_thenReturnCapitalizedWords() throws Exception {
-        ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-        List<String> data = Arrays.asList("dog", "cat", "wolf", "pig");
+  @Test
+  public void givenDataSet_whenExecuteWordCapitalizer_thenReturnCapitalizedWords()
+      throws Exception {
+    ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+    List<String> data = Arrays.asList("dog", "cat", "wolf", "pig");
 
-         DataSet<String> testDataSet = env.fromCollection(data);
+    DataSet<String> testDataSet = env.fromCollection(data);
 
 
-        List<String> dataProcessed = testDataSet
-          .map(new WordsCapitalizer())
-          .collect();
+    List<String> dataProcessed = testDataSet.map(new WordsCapitalizer()).collect();
 
-        List<String> testDataCapitalized = data.stream()
-          .map(String::toUpperCase)
-          .collect(Collectors.toList());
+    List<String> testDataCapitalized =
+        data.stream().map(String::toUpperCase).collect(Collectors.toList());
 
-        Assert.assertEquals(testDataCapitalized, dataProcessed);
-    }
+    Assert.assertEquals(testDataCapitalized, dataProcessed);
+  }
 
 }

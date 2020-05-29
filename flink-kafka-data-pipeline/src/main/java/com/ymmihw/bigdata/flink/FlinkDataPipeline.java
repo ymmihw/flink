@@ -22,7 +22,7 @@ public class FlinkDataPipeline {
     String inputTopic = "flink_input";
     String outputTopic = "flink_output";
     String consumerGroup = "baeldung";
-    String address = "localhost:9092";
+    String address = "172.16.10.177:9092";
 
     StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
 
@@ -43,7 +43,7 @@ public class FlinkDataPipeline {
     String inputTopic = "flink_input";
     String outputTopic = "flink_output";
     String consumerGroup = "baeldung";
-    String kafkaAddress = "localhost:9092";
+    String kafkaAddress = "172.16.10.177:9092";
 
     StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
 

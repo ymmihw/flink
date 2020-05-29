@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.collections.ListUtils;
 import org.apache.flink.api.common.serialization.DeserializationSchema;
-import org.apache.flink.api.common.serialization.SerializationSchema;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.awaitility.Awaitility;
 import org.junit.Before;
 import org.junit.Test;
@@ -93,10 +93,10 @@ public class BackupCreatorIntegrationTest {
     List<InputMessage> messages = Arrays.asList(message);
     Backup backup = new Backup(messages, LocalDateTime.now());
     byte[] backupSerialized = mapper.writeValueAsBytes(backup);
-    SerializationSchema<Backup> serializationSchema = new BackupSerializationSchema();
-    byte[] backupProcessed = serializationSchema.serialize(backup);
+    BackupSerializationSchema serializationSchema = new BackupSerializationSchema("test");
+    ProducerRecord<byte[], byte[]> backupProcessed = serializationSchema.serialize(backup, 0L);
 
-    assertArrayEquals(backupSerialized, backupProcessed);
+    assertArrayEquals(backupSerialized, backupProcessed.value());
   }
 
   private static class CollectingSink implements SinkFunction<Backup> {

@@ -1,33 +1,38 @@
 package com.ymmihw.bigdata.flink.schema;
 
-import org.apache.flink.api.common.serialization.SerializationSchema;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.nio.charset.StandardCharsets;
+import org.apache.flink.streaming.connectors.kafka.KafkaSerializationSchema;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.ymmihw.bigdata.flink.model.Backup;
+import lombok.extern.slf4j.Slf4j;
 
-public class BackupSerializationSchema implements SerializationSchema<Backup> {
+@Slf4j
+public class BackupSerializationSchema implements KafkaSerializationSchema<Backup> {
   private static final long serialVersionUID = 1L;
 
-  static ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+  private final String topic;
+  private final ObjectMapper objectMapper;
+  {
+    objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+    objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+  }
 
-  Logger logger = LoggerFactory.getLogger(BackupSerializationSchema.class);
+  public BackupSerializationSchema(String topic) {
+    this.topic = topic;
+  }
 
   @Override
-  public byte[] serialize(Backup backupMessage) {
-    if (objectMapper == null) {
-      objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-      objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    }
+  public ProducerRecord<byte[], byte[]> serialize(Backup backupMessage, Long timestamp) {
     try {
       String json = objectMapper.writeValueAsString(backupMessage);
-      return json.getBytes();
+      return new ProducerRecord<>(topic, null, json.getBytes(StandardCharsets.UTF_8));
     } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
-      logger.error("Failed to parse JSON", e);
+      log.error("Failed to parse JSON", e);
     }
-    return new byte[0];
+    return new ProducerRecord<>(topic, null, new byte[0]);
   }
 }
