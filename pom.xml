@@ -39,6 +39,7 @@
  <modules>
   <module>word-count</module>
   <module>flink-intro</module>
+  <module>flink-kafka-data-pipeline</module>
  </modules>
  <build>
   <plugins>
