@@ -22,7 +22,8 @@ public class WordCount {
             // group by the tuple field "0" and sum up tuple field "1"
             .groupBy(0).aggregate(Aggregations.SUM, 1);
     // emit result
-    counts.writeAsText(params.get("output", "output"));
+//    counts.writeAsText(params.get("output", "output"));
+    counts.print();
     // execute program
     env.execute("WordCount Example");
   }
