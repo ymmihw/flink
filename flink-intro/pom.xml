@@ -23,7 +23,7 @@
   </dependency>
   <dependency>
    <groupId>org.apache.flink</groupId>
-   <artifactId>flink-streaming-java_${scala.version}</artifactId>
+   <artifactId>flink-clients_${scala.version}</artifactId>
    <version>${flink.version}</version>
   </dependency>
  </dependencies>

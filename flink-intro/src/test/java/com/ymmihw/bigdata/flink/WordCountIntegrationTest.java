@@ -1,5 +1,10 @@
 package com.ymmihw.bigdata.flink;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.List;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.operators.Order;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
@@ -12,13 +17,8 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.timestamps.BoundedOutOfOrdernessTimestampExtractor;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.runtime.operators.util.AssignerWithPeriodicWatermarksAdapter;
 import org.junit.Test;
-
-import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class WordCountIntegrationTest {
   private final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
@@ -133,19 +133,23 @@ public class WordCountIntegrationTest {
     // given
     final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
+    BoundedOutOfOrdernessTimestampExtractor<Tuple2<Integer, Long>> timestampAndWatermarkAssigner =
+        new BoundedOutOfOrdernessTimestampExtractor<Tuple2<Integer, Long>>(Time.seconds(20)) {
+          private static final long serialVersionUID = 1L;
+
+          @Override
+          public long extractTimestamp(Tuple2<Integer, Long> element) {
+            return element.f1 * 1000;
+          }
+        };
+
+    WatermarkStrategy<Tuple2<Integer, Long>> wms =
+        new AssignerWithPeriodicWatermarksAdapter.Strategy<>(timestampAndWatermarkAssigner);
     SingleOutputStreamOperator<Tuple2<Integer, Long>> windowed = env
         .fromElements(
             new Tuple2<>(16, ZonedDateTime.now().plusMinutes(25).toInstant().getEpochSecond()),
             new Tuple2<>(15, ZonedDateTime.now().plusMinutes(2).toInstant().getEpochSecond()))
-        .assignTimestampsAndWatermarks(
-            new BoundedOutOfOrdernessTimestampExtractor<Tuple2<Integer, Long>>(Time.seconds(20)) {
-              private static final long serialVersionUID = 1L;
-
-              @Override
-              public long extractTimestamp(Tuple2<Integer, Long> element) {
-                return element.f1 * 1000;
-              }
-            });
+        .assignTimestampsAndWatermarks(wms);
 
     SingleOutputStreamOperator<Tuple2<Integer, Long>> reduced =
         windowed.windowAll(TumblingEventTimeWindows.of(Time.seconds(5))).maxBy(0, true);
