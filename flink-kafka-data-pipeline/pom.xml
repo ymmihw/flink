@@ -14,8 +14,6 @@
  <url>http://maven.apache.org</url>
  <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  <flink.version>1.10.1</flink.version>
-  <jmapper.version>1.6.0.1</jmapper.version>
  </properties>
  <dependencies>
   <dependency>
@@ -25,12 +23,12 @@
   </dependency>
   <dependency>
    <groupId>org.apache.flink</groupId>
-   <artifactId>flink-streaming-java_2.12</artifactId>
+   <artifactId>flink-streaming-java_${scala.version}</artifactId>
    <version>${flink.version}</version>
   </dependency>
   <dependency>
    <groupId>org.apache.flink</groupId>
-   <artifactId>flink-connector-kafka_2.12</artifactId>
+   <artifactId>flink-connector-kafka_${scala.version}</artifactId>
    <version>${flink.version}</version>
   </dependency>
   <dependency>
@@ -52,7 +50,7 @@
   </dependency>
   <dependency>
    <groupId>org.apache.flink</groupId>
-   <artifactId>flink-test-utils_2.12</artifactId>
+   <artifactId>flink-test-utils_${scala.version}</artifactId>
    <version>${flink.version}</version>
    <scope>test</scope>
   </dependency>

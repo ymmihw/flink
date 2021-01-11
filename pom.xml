@@ -13,6 +13,9 @@
 
  <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <flink.version>1.12.0</flink.version>
+  <scala.version>2.12</scala.version>
+  <jmapper.version>1.6.0.1</jmapper.version>
  </properties>
  <dependencyManagement>
   <dependencies>
