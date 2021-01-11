@@ -37,7 +37,7 @@
   </dependency>
  </dependencies>
  <modules>
-  <module>word-count</module>
+  <module>flink-word-count</module>
   <module>flink-intro</module>
   <module>flink-kafka-data-pipeline</module>
  </modules>

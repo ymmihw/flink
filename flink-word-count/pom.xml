@@ -8,7 +8,7 @@
   <version>0.0.1-SNAPSHOT</version>
  </parent>
  <groupId>com.ymmihw.bigdata.flink</groupId>
- <artifactId>word-count</artifactId>
+ <artifactId>flink-word-count</artifactId>
  <version>0.0.1-SNAPSHOT</version>
  <name>word-count</name>
  <url>http://maven.apache.org</url>
