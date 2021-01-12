@@ -42,7 +42,7 @@ public class CheckpointExample {
     prop.put("bootstrap.servers", KAFKA_BROKER);
     prop.put("group.id", KAFKA_GROUP_ID);
     prop.put("auto.offset.reset", "latest");
-    prop.put("enable.auto.commit", "false");
+    prop.put("enable.auto.commit", "true");
 
     FlinkKafkaConsumer<String> source =
         new FlinkKafkaConsumer<>(KAFKA_INPUT_TOPIC, new SimpleStringSchema(), prop);
