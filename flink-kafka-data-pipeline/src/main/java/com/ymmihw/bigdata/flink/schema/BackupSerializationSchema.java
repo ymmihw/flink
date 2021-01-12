@@ -15,14 +15,12 @@ public class BackupSerializationSchema implements KafkaSerializationSchema<Backu
   private static final long serialVersionUID = 1L;
 
   private final String topic;
-  private final ObjectMapper objectMapper;
-  {
-    objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-  }
+  private final transient ObjectMapper objectMapper;
 
   public BackupSerializationSchema(String topic) {
     this.topic = topic;
+    this.objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+    this.objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
   }
 
   @Override

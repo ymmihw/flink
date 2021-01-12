@@ -61,7 +61,7 @@ public class FlinkDataPipeline {
     inputMessagesStream.timeWindowAll(Time.hours(24)).aggregate(new BackupAggregator())
         .addSink(flinkKafkaProducer);
 
-    environment.execute();
+    // environment.execute();
   }
 
   public static void main(String[] args) throws Exception {
