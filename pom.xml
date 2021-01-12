@@ -44,6 +44,7 @@
   <module>flink-intro</module>
   <module>flink-kafka-data-pipeline</module>
   <module>flink-checkpoint</module>
+  <module>flink-consume-data-from-kafka</module>
  </modules>
  <build>
   <plugins>
