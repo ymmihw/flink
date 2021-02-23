@@ -16,3 +16,4 @@ flink-table-example | [Table API](https://riptutorial.com/apache-flink/topic/896
 Module | Article
 --|--
 flink-datastream-fraud-detection | [Fraud Detection with the DataStream API](https://ci.apache.org/projects/flink/flink-docs-release-1.12/try-flink/datastream_api.html)
+flink-datastream-overview | [Flink DataStream API Programming Guide](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/datastream_api.html)
