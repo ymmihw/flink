@@ -7,4 +7,12 @@ flink-kafka-data-pipeline | [Building a Data Pipeline with Flink and Kafka](http
 flink-checkpoint | [Checkpointing](https://riptutorial.com/apache-flink/topic/9465/checkpointing)
 flink-consume-data-from-kafka | [Consume data from Kafka](https://riptutorial.com/apache-flink/topic/9003/consume-data-from-kafka)
 flink-table-example | [Table API](https://riptutorial.com/apache-flink/topic/8966/table-api)
-flink-fraud-detection | [Fraud Detection with the DataStream API](https://ci.apache.org/projects/flink/flink-docs-release-1.12/try-flink/datastream_api.html)
+
+
+
+
+### flink-datastream: 
+
+Module | Article
+--|--
+flink-datastream-fraud-detection | [Fraud Detection with the DataStream API](https://ci.apache.org/projects/flink/flink-docs-release-1.12/try-flink/datastream_api.html)
