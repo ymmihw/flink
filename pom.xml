@@ -46,7 +46,7 @@
   <module>flink-checkpoint</module>
   <module>flink-consume-data-from-kafka</module>
   <module>flink-table-example</module>
-  <module>flink-fraud-detection</module>
+  <module>flink-datastream</module>
  </modules>
  <build>
   <plugins>
