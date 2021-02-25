@@ -31,5 +31,6 @@
   <module>flink-datastream-fraud-detection</module>
   <module>flink-datastream-overview</module>
   <module>flink-datastream-working-with-state</module>
+  <module>flink-datastream-broadcast-state</module>
  </modules>
 </project>
