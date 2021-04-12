@@ -8,27 +8,17 @@
   <version>0.0.1-SNAPSHOT</version>
  </parent>
  <groupId>com.ymmihw.bigdata</groupId>
- <artifactId>flink-table-example</artifactId>
+ <artifactId>flink-table-sql</artifactId>
+ <packaging>pom</packaging>
  <version>0.0.1-SNAPSHOT</version>
- <name>flink-table-example</name>
+ <name>flink-table-sql</name>
  <url>http://maven.apache.org</url>
  <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  </properties>
  <dependencies>
-  <dependency>
-   <groupId>org.apache.flink</groupId>
-   <artifactId>flink-table-planner_${scala.version}</artifactId>
-   <version>${flink.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>org.apache.flink</groupId>
-   <artifactId>flink-clients_${scala.version}</artifactId>
-   <version>${flink.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>ch.qos.logback</groupId>
-   <artifactId>logback-classic</artifactId>
-  </dependency>
  </dependencies>
+ <modules>
+  <module>flink-table-example</module>
+ </modules>
 </project>

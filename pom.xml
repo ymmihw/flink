@@ -45,8 +45,8 @@
   <module>flink-kafka-data-pipeline</module>
   <module>flink-checkpoint</module>
   <module>flink-consume-data-from-kafka</module>
-  <module>flink-table-example</module>
   <module>flink-datastream</module>
+  <module>flink-table-sql</module>
  </modules>
  <build>
   <plugins>
