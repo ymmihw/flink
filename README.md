@@ -17,4 +17,6 @@ flink-datastream-working-with-state | [Working with State](https://ci.apache.org
 flink-datastream-broadcast-state | [The Broadcast State Pattern](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/stream/state/broadcast_state.html)
 
 ### flink-table-sql
+Module | Article
+--|--
 flink-table-example | [Table API](https://riptutorial.com/apache-flink/topic/8966/table-api)
