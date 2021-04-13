@@ -20,5 +20,6 @@
  </dependencies>
  <modules>
   <module>flink-table-example</module>
+  <module>flink-sql-example</module>
  </modules>
 </project>
