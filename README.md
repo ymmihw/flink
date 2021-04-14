@@ -20,3 +20,4 @@ flink-datastream-broadcast-state | [The Broadcast State Pattern](https://ci.apac
 Module | Article
 --|--
 flink-table-example | [Table API](https://riptutorial.com/apache-flink/topic/8966/table-api)
+flink-sql-example | 
