@@ -13,7 +13,7 @@ import org.apache.flink.table.sources.CsvTableSource;
 import org.apache.flink.types.Row;
 import com.ymmihw.bigdata.flink.source.SensorSource;
 
-public class StreamTableJoinExamples {
+public class StreamTableJoinExample {
   public static void doStreamTableJoin(StreamExecutionEnvironment env,
       StreamTableEnvironment tableEnv) {
     // Stream to table joins
